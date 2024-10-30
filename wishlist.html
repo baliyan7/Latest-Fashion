@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Styling the wishlist page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .wishlist-container {
+      max-width: 800px;
+      width: 100%;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .wishlist-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .wishlist-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .wishlist-card {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: calc(50% - 10px);
+      box-sizing: border-box;
+      background-color: #f7f7f7;
+    }
+
+    .wishlist-card img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-right: 15px;
+    }
+
+    .wishlist-info {
+      flex: 1;
+    }
+
+    .wishlist-info p {
+      margin: 5px 0;
+    }
+
+    .remove-btn {
+      background-color: #e74c3c;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .remove-btn:hover {
+      background-color: #c0392b;
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 600px) {
+      .wishlist-card {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .wishlist-card img {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wishlist-container">
+  <h1 class="wishlist-header">Your Wishlist</h1>
+  <div id="wishlist-items" class="wishlist-items"></div>
+</div>
+
+<script>
+// Retrieve wishlist from localStorage or initialize an empty array
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+// Function to render wishlist items on the page
+function displayWishlist() {
+  const wishlistContainer = document.getElementById("wishlist-items");
+  wishlistContainer.innerHTML = "";  // Clear existing content
+
+  if (wishlist.length === 0) {
+    wishlistContainer.innerHTML = "<p>Your wishlist is empty.</p>";
+    return;
+  }
+
+  // Loop through wishlist items and render each one
+  wishlist.forEach((item) => {
+    wishlistContainer.innerHTML += `
+      <div class="wishlist-card" data-id="${item.id}">
+        <img src="${item.image}" alt="${item.brand}">
+        <div class="wishlist-info">
+          <p class="brand-name">${item.brand}</p>
+          <p class="price">${item.price}</p>
+          <button class="remove-btn" onclick="removeFromWishlist('${item.id}')">Remove</button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// Function to remove item from wishlist
+function removeFromWishlist(productId) {
+  // Update wishlist by filtering out the removed item
+  wishlist = wishlist.filter(item => item.id !== productId);
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  displayWishlist();  // Refresh wishlist display
+}
+
+// Initial display of wishlist items when the page loads
+displayWishlist();
+</script>
+
+</body>
+</html>

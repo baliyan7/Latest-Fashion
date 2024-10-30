@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+
+        /* Center logo in header */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f5f5f5;
+            /* Optional: Add background color to header */
+        }
+
+        .logo-container h1 {
+            margin-left: 18px;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .logo-container h2 {
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            color: orange;
+        }
+
+        /* Logo image styling */
+        .logo-image {
+            margin-left: 35px;
+            height: 50px;
+            border-radius: 30px;
+            width: 1px;
+            /* Adjust width to control logo size on larger screens */
+        }
+
+        /* Responsive styling for smaller screens */
+        @media (max-width: 600px) {
+            .logo-image {
+                width: 50px;
+                /* Adjust width for mobile screens */
+            }
+        }
+
+        /* Styles for the Back Button */
+        .back-button {
+            position: absolute;
+            top: 90px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+           
+        }
+
+
+        .back-icon {
+            width: 25px;
+            /* Adjust width and height as needed */
+            height: 25px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            background: #fff;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h1 {
+            text-align: center;
+            color: balck;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .contact-options,
+        .contact-form {
+            display: grid;
+            gap: 20px;
+        }
+        .contact-form h2 {
+            margin-top: 20px;
+        }
+        .contact-options {
+            grid-template-columns: 1fr;
+        }
+
+        .contact-option {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .contact-option:hover {
+            background: #e9ecef;
+        }
+
+        .contact-icon {
+            font-size: 1.8em;
+            margin-right: 15px;
+            color: #007bff;
+        }
+
+        .contact-details {
+            font-size: 1em;
+        }
+
+        .contact-details a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Form */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: #007bff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Layout */
+        @media (min-width: 768px) {
+            .contact-options {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 10px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            border-top: 1px solid #ddd;
+            text-decoration: none;
+        }
+
+        /* Navigation Item */
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            text-decoration: none;
+        }
+
+        /* Icon Styling */
+        .icon-bottom {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 5px;
+        }
+
+        /* Label Styling */
+        .label {
+            font-size: 15px;
+            color: #555;
+        }
+
+        /* Badge for Message Notifications */
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #ff7f50;
+            text-decoration: none;
+        }
+
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="logo-container">
+        <img src="./all photos/home logo.png" alt="New Age Fashion Logo" class="logo-image">
+        <div>
+            <h1>New Age Fashion</h1>
+            <h2>Latest Outfits</h2>
+        </div>
+    </section>
+    <!-- Back Button with Image Icon -->
+    <a class="back-button" onclick="goBack()" aria-label="Go Back">
+        <img src="./all photos/back-icon.png" alt="Back Icon" class="back-icon">
+    </a>
+
+    <div class="container">
+        <h1>Contact Us</h1>
+
+        <!-- Contact Options -->
+        <div class="contact-options">
+            <!-- Phone -->
+            <div class="contact-option">
+                <img src="./all photos/contact-phone-icon.png" alt="Phone Icon" class="contact-icon">
+                <div class="contact-details">
+                    <strong>Phone:</strong> <a href="tel:+1234567890">+91 9758138613</a>
+                </div>
+            </div>
+            <!-- Email -->
+            <div class="contact-option">
+                <img src="./all photos/contact-email-icon.png" alt="Email Icon" class="contact-icon">
+                <div class="contact-details">
+                    <strong>Email:</strong> <a href="mailto:support@yourshop.com">newagefashion01@gmail.com</a>
+                </div>
+            </div>
+            <!-- WhatsApp -->
+            <div class="contact-option">
+                <img src="./all photos/contact-whatsapp-icon.png" alt="WhatsApp Icon" class="contact-icon">
+                <div class="contact-details">
+                    <strong>WhatsApp:</strong> <a href="https://wa.me/1234567890">Chat with us on WhatsApp</a>
+                </div>
+            </div>
+            <!-- Address -->
+            <div class="contact-option">
+                <img src="./all photos/contact-location-icon.png" alt="Location Icon" class="contact-icon">
+                <div class="contact-details">
+                    <strong>Address:</strong> Minakshi chowk, Muzaffarnager (251318), Uttar Pradesh, India
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <img src="./all photos/home.png" alt="Home" class="icon-bottom">
+            <span class="label">Home</span>
+        </a>
+        <a href="trending.html" class="nav-item">
+            <img src="./all photos/trendingicon.png" alt="Trending" class="icon-bottom">
+            <span class="label">Trending</span>
+        </a>
+        <a href="membership.html" class="nav-item">
+            <img src="./all photos/planicon.png" alt="Plan" class="icon-bottom">
+            <span class="label">Plan</span>
+        </a>
+        <a href="cart.html" class="nav-item">
+            <img src="./all photos/carticon.png" alt="Cart" class="icon-bottom">
+            <span class="label">Cart</span>
+        </a>
+        <a href="account.html" class="nav-item">
+            <img src="./all photos/accounticon.png" alt="Account" class="icon-bottom">
+            <span class="label">Account</span>
+        </a>
+    </div>
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Your Brand. All Rights Reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+<script>
+    // JavaScript function to go back to the previous page
+    function goBack() {
+        window.history.back();
+    }
+
+
+
+    document.getElementById("contactForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        alert("Thank you for reaching out! We will get back to you soon.");
+        // Normally, here you'd send the form data to the backend
+    });
+</script>
+
+</html>

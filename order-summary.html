@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary</title>
+    <style>
+        /* Add some basic styling */
+        .order-summary, .shipping-info {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .place-order-btn, .proceed-payment-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .shipping-info input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="order-summary">
+        <h2>Order Summary</h2>
+        <div id="cartItems"></div>
+        <div class="total" id="totalPrice"></div>
+    </div>
+
+    <div class="shipping-info">
+        <h3>Shipping Information</h3>
+        <form id="shippingForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="text" id="phone" placeholder="Phone Number" required>
+            <input type="text" id="address" placeholder="Address" required>
+            <input type="text" id="city" placeholder="City" required>
+            <input type="text" id="state" placeholder="State" required>
+            <input type="text" id="postalCode" placeholder="Postal Code" required>
+            <button type="button" class="proceed-payment-btn" id="proceedPaymentBtn">Proceed to Payment</button>
+        </form>
+    </div>
+
+    <script>
+        // Display cart items (assuming you have this function)
+        function displayOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsDiv = document.getElementById('cartItems');
+            const totalPriceDiv = document.getElementById('totalPrice');
+            cartItemsDiv.innerHTML = '';
+
+            let total = 0;
+            cart.forEach(item => {
+                cartItemsDiv.innerHTML += `
+                    <div class="cart-item">
+                        <span>${item.name}</span>
+                        <span>₹${item.price}</span>
+                    </div>`;
+                total += item.price;
+            });
+
+            totalPriceDiv.innerHTML = `Total: ₹${total}`;
+        }
+
+        window.onload = displayOrderSummary;
+
+        // Proceed to Payment button action
+        document.getElementById('proceedPaymentBtn').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const state = document.getElementById('state').value;
+            const postalCode = document.getElementById('postalCode').value;
+
+            if (name && phone && address && city && state && postalCode) {
+                // Save the shipping info (for now, you could save it to localStorage or pass it to the backend if needed)
+                localStorage.setItem('shippingInfo', JSON.stringify({
+                    name, phone, address, city, state, postalCode
+                }));
+                alert('Proceeding to payment...');
+                // Redirect to a payment gateway page (we'll set this up in the next step)
+                window.location.href = 'payment.html'; // Temporary placeholder, we'll create this file next
+            } else {
+                alert('Please fill in all shipping information fields.');
+            }
+        });
+    </script>
+</body>
+</html>

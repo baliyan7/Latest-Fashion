@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latest Shoes Fashion</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #f9f9f9;
+    }
+
+    /* Center logo in header */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background-color: #f5f5f5;
+      /* Optional: Add background color to header */
+    }
+
+    .logo-container h1 {
+      margin-left: 18px;
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .logo-container h2 {
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+      color: orange;
+    }
+
+    /* Logo image styling */
+    .logo-image {
+      margin-left: 55px;
+      height: 50px;
+      border-radius: 30px;
+      width: 1px;
+      /* Adjust width to control logo size on larger screens */
+    }
+
+    /* Responsive styling for smaller screens */
+    @media (max-width: 600px) {
+      .logo-image {
+        width: 50px;
+        /* Adjust width for mobile screens */
+      }
+    }
+
+    /* Header */
+    header {
+      background-color: #fff;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      margin: 0 10px;
+    }
+
+        /* Styles for the Back Button */
+        .back-button {
+      position: absolute;
+
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+    }
+
+
+    .back-icon {
+      width: 25px;
+      /* Adjust width and height as needed */
+      height: 25px;
+    }
+
+    .search-bar {
+      margin-left: 35px;
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+    }
+
+
+    /* Styling for the Search Button */
+    .search-button {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-icon-img {
+      width: 30px;
+    height: 30px;
+      margin-left: 10px;
+    }
+
+    /* Styling for the Search Results */
+    .search-results {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .result-item {
+      padding: 5px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .cart-icon img {
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 40px;
+      height: 40px;
+    }
+
+    /* Swiper Section */
+    .product-swiper {
+      padding: 20px;
+    }
+
+    .product-swiper h2 {
+      text-align: center;
+    }
+
+    .swiper-container {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 10px 0;
+    }
+
+
+    .card img {
+      width: 100%;
+      /* Make the image take up the full width of the card */
+      height: 190px;
+      /* Set a fixed height, or adjust according to your design */
+      object-fit: cover;
+      /* Ensures the image covers the area without distortion */
+      border-radius: 5px;
+      /* Optional: Matches the card's rounded corners */
+    }
+
+    /* Banner Section */
+    .banner {
+      text-align: center;
+      padding: 10px 5px;
+      background-color: #e0f7fa;
+      margin-bottom: 10px;
+    }
+
+    .shop-now-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ff7f50;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 18px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #ff7f50;
+      text-decoration: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+
+      .navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .search-container {
+        width: 90%;
+      }
+
+      .cart-content {
+        width: 90%;
+      }
+
+      .product-swiper {
+        padding: 10px;
+      }
+
+      .swiper-container {
+        gap: 10px;
+        padding: 5px 0;
+      }
+
+      .card {
+        min-width: 160px;
+        text-decoration: none;
+      }
+
+      .banner h2 {
+        font-size: 1.5rem;
+
+      }
+
+      .shop-now-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Desktop-specific styles */
+    @media (min-width: 769px) {
+      header {
+        padding: 15px;
+      }
+
+      .search-bar {
+        font-size: 1.1rem;
+        padding: 10px 15px;
+      }
+
+      .cart-content {
+        max-width: 500px;
+      }
+
+      .swiper-container {
+        gap: 20px;
+      }
+
+      .card {
+        min-width: 180px;
+        text-decoration: none;
+      }
+
+      .banner {
+        padding: 60px 40px;
+      }
+
+      .shop-now-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+    }
+
+    /* New Arrivals Card Swiper Section */
+    .new-cards-section {
+      padding: 10px;
+      /* Reduced padding for mobile screens */
+      background-color: #f9f9f9;
+      margin: auto;
+    }
+
+    .new-cards-section h2 {
+      font-size: 1.5rem;
+    margin-top: 10px;
+    padding: 10px;
+    font-weight: bold;
+    background: #e0f7fa;
+    text-align: center;
+    margin-bottom: 10px;
+}
+    
+
+    .card-swiper {
+      display: grid;
+      grid-template-columns: repeat(2, 0.495fr);
+      /* Always show two cards per row */
+      gap: 8px;
+      /* Space between cards */
+    }
+
+    .card {
+      max-width: 400px;
+      background-color: #fff;
+      padding: 8px;
+      /* Reduced padding for mobile */
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      text-align: left;
+      text-decoration: none;
+    }
+
+    .card img {
+      width: 100%;
+      height: 190px;
+      /* Adjusted height for mobile-friendly look */
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .product-info {
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .brand-name {
+      font-weight: bold;
+      font-size: 12px;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .discount {
+      color: #4caf50;
+      font-size: 10px;
+    }
+
+    .price {
+      color: #333;
+      font-weight: bold;
+      font-size: 13px;
+      margin: 4px 0;
+    }
+
+    .original-price {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 10px;
+      margin-right: 4px;
+    }
+
+    .delivery-info {
+      font-size: 10px;
+      color: #333;
+    }
+
+    .rating {
+      color: #ffa500;
+      font-size: 10px;
+    }
+
+    .favorite-icon {
+      position: relative;
+    left: 124px;
+    bottom: 260px;
+    width: 50px;
+    text-align: center;
+    border-radius: 15px;
+    background: #26B690;
+    margin: -12px;
+    padding: 2px;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    
+    }
+
+    /* Mobile-first responsive design */
+    @media (min-width: 600px) {
+      .card-swiper {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        /* Allows more flexibility on slightly larger screens */
+      }
+    }
+
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #ffffff;
+      padding: 10px 0;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+      border-top: 1px solid #ddd;
+      text-decoration: none;
+    }
+
+    /* Navigation Item */
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      text-decoration: none;
+    }
+
+    /* Icon Styling */
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 5px;
+    }
+
+    /* Label Styling */
+    .label {
+      font-size: 15px;
+      color: #555;
+    }
+
+    /* Badge for Message Notifications */
+    .badge {
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="logo-container">
+    <img src="./all photos/home logo.png" alt="New Age Fashion Logo" class="logo-image">
+    <div>
+      <h1>New Age Fashion</h1>
+      <h2>Latest Outfits</h2>
+    </div>
+  </section>
+  <header>
+    <div class="navbar">
+
+<!-- Back Button with Image Icon -->
+<a class="back-button" onclick="goBack()" aria-label="Go Back">
+  <img src="./all photos/back-icon.png" alt="Back Icon" class="back-icon">
+</a>
+
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search here..." class="search-bar">
+        <button class="search-button" onclick="performSearch()">
+          <img src="./all photos/search.png"
+            alt="Search Icon" class="search-icon-img">
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- Search Results Section -->
+  <div id="search-results" class="new-cards-section">
+
+    <div class="card-swiper" id="results-container"></div>
+  </div>
+  <!-- Banner Section -->
+  <section class="banner">
+    <h2>Latest Shoes Fashion</h2>
+  </section>
+
+  <div class="new-cards-section">
+   
+    <div class="card-swiper">
+      <a href="#" class="card">
+        <img src="./all photos/t shirt image product 1.jpg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">HRX by Hrithik Roshan</p>
+          <p class="discount">55% off</p>
+          <p class="price"><span class="original-price">₹3,498</span> ₹1,540</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.5 (10,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <a href="#" class="card">
+        <img src="./all photos/t shirt image product 2.png" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      <a href="#" class="card">
+        <img src="./all photos/t shirt image product 3.jpeg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <a href="#" class="card">
+        <img src="./all photos/t shirt image product 4.avif" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <a href="#" class="card">
+        <img src="./all photos/shoes image product 1.jpeg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <a href="#" class="card">
+        <img src="./all photos/shoes image product 2.jpeg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <a href="#" class="card">
+        <img src="./all photos/shoes image product 5.jpeg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <a href="#" class="card">
+        <img src="./all photos/shoes image product 4.jpeg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <a href="#" class="card">
+        <img src="./all photos/shirt product 1.jpg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <a href="#" class="card">
+        <img src="./all photos/shirt product 2.jpeg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <a href="#" class="card">
+        <img src="./all photos/shirt product 3.jpeg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <a href="#" class="card">
+        <img src="./all photos/shirt product 4.jpeg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <a href="#" class="card">
+        <img src="./all photos/blazer product 1.jpg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <a href="#" class="card">
+        <img src="./all photos/blazer product 2.jpg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <a href="#" class="card">
+        <img src="./all photos/blazer product 3.jpg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <a href="#" class="card">
+        <img src="./all photos/blazer product 4.jpg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Triptee</p>
+          <p class="discount">60% off</p>
+          <p class="price"><span class="original-price">₹4,998</span> ₹2,499</p>
+          <p class="delivery-info">Free delivery</p>
+          <p class="rating">★ 4.8 (11,000)</p>
+        </div>
+        <div class="favorite-icon">Hot</div>
+      </a>
+      <!-- Add more cards as needed -->
+    </div>
+  </div>
+  <div class="new-cards-section">
+    <h2>Latest Stores</h2>
+    <div class="card-swiper">
+      <a href="men's t-shirts.html" class="card">
+        <img src="./all photos/men's t shirt image store.webp" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Men's T-shirt</p>
+          <p class="discount">Upto 55% off</p>
+          <p class="rating">★ 4.5 (10,000)</p>
+        </div>
+      </a>
+      <a href="Men's Shirt.html" class="card">
+        <img src="./all photos/men's shirt image of store.jpeg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Men's Shirt</p>
+          <p class="discount">Upto 45% off</p>
+          <p class="rating">★ 4.3 (7,000)</p>
+        </div>
+      </a>
+      <a href="Wedding Outfits.html" class="card">
+        <img src="./all photos/men's wedding outfit image store.jpeg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Wedding Outfits</p>
+          <p class="discount">Upto 35% off</p>
+          <p class="rating">★ 4.4 (3,000)</p>
+        </div>
+      </a>
+      <a href="latest shoes.html" class="card">
+        <img src="./all photos/mens shoes image.jpg" alt="Product Image">
+        <div class="product-info">
+          <p class="brand-name">Shoes</p>
+          <p class="discount">Upto 55% off</p>
+          <p class="rating">★ 4.6 (5,000)</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 Your Brand. All Rights Reserved.</p>
+    <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+  </footer>
+  <!-- Bottom Navigation Bar -->
+  <div class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <img src="./all photos/home.png" alt="Home" class="icon">
+      <span class="label">Home</span>
+    </a>
+    <a href="trending.html" class="nav-item">
+      <img src="./all photos/trendingicon.png" alt="Trending" class="icon">
+      <span class="label">Trending</span>
+    </a>
+    <a href="membership.html" class="nav-item">
+      <img src="./all photos/planicon.png" alt="Plan" class="icon">
+      <span class="label">Plan</span>
+    </a>
+    <a href="cart.html" class="nav-item">
+      <img src="./all photos/carticon.png" alt="Cart" class="icon">
+      <span class="label">Cart</span>
+    </a>
+    <a href="account.html" class="nav-item">
+      <img src="./all photos/accounticon.png" alt="Account" class="icon">
+      <span class="label">Account</span>
+    </a>
+  </div>
+  <script src="script.js"></script>
+</body>
+<script>
+// JavaScript function to go back to the previous page
+function goBack() {
+    window.history.back();
+  }
+
+
+  // Sample product data
+  const products = [
+    { name: 'Blue T-Shirt', category: 'Apparel', price: '₹1,200', discount: '55% off', rating: '★ 4.5 (10,000)', image: 'https://via.placeholder.com/200' },
+    { name: 'Red Hoodie', category: 'Apparel', price: '₹1,800', discount: '45% off', rating: '★ 4.3 (7,000)', image: 'https://via.placeholder.com/200' },
+    { name: 'Leather Jacket', category: 'Outerwear', price: '₹4,500', discount: '30% off', rating: '★ 4.7 (12,000)', image: 'https://via.placeholder.com/200' },
+    { name: 'Slim Fit Jeans', category: 'Pants', price: '₹1,500', discount: '40% off', rating: '★ 4.1 (8,000)', image: 'https://via.placeholder.com/200' },
+    { name: 'Gray Hoodie', category: 'Apparel', price: '₹1,600', discount: '50% off', rating: '★ 4.0 (9,500)', image: 'https://via.placeholder.com/200' }
+  ];
+
+  // Function to perform search
+  function performSearch() {
+    const query = document.getElementById('search-input').value.trim().toLowerCase();
+    const resultsContainer = document.getElementById('results-container');
+    resultsContainer.innerHTML = ''; // Clear previous results
+
+    if (query) {
+      // Filter products based on the search query
+      const results = products.filter(product =>
+        product.name.toLowerCase().includes(query)
+      );
+
+      // Display results
+      if (results.length > 0) {
+        results.forEach(product => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <img src="${product.image}" alt="Product Image">
+            <div class="product-info">
+              <p class="brand-name">${product.name}</p>
+              <p class="discount">${product.discount}</p>
+              <p class="price"><span class="original-price">${parseInt(product.price.replace('₹', '')) * 2}</span> ${product.price}</p>
+              <p class="rating">${product.rating}</p>
+            </div>
+          `;
+          resultsContainer.appendChild(card);
+        });
+      } else {
+        resultsContainer.innerHTML = '<p>No results found.</p>';
+      }
+    } else {
+      resultsContainer.innerHTML = '<p>Please enter a search term.</p>';
+    }
+  }
+
+  // JavaScript for auto and touch scrolling
+  const scrollContainer = document.getElementById("scrollSection");
+  const cardCount = scrollContainer.children.length;
+  let currentIndex = 0;
+  let autoScrollInterval;
+
+  // Function to auto-scroll cards
+  function autoScroll() {
+    currentIndex = (currentIndex + 1) % cardCount; // Loop back to the first card
+    scrollContainer.scrollTo({
+      left: currentIndex * window.innerWidth, // Move to the next card position
+      behavior: "smooth"
+    });
+  }
+
+  // Start auto-scrolling at a set interval
+  function startAutoScroll() {
+    autoScrollInterval = setInterval(autoScroll, 3000); // Scroll every 3 seconds
+  }
+
+  // Stop auto-scrolling when user interacts
+  function stopAutoScroll() {
+    clearInterval(autoScrollInterval);
+  }
+
+  // Restart auto-scrolling after a short delay to allow user control
+  function restartAutoScroll() {
+    stopAutoScroll();
+    setTimeout(startAutoScroll, 5000); // Restart auto-scrolling after 5 seconds of no interaction
+  }
+
+  // Listen for user touch interactions
+  scrollContainer.addEventListener("touchstart", stopAutoScroll); // Stop auto-scroll on touch
+  scrollContainer.addEventListener("touchend", restartAutoScroll); // Restart after touch ends
+
+  // Start auto-scrolling when the page loads
+  startAutoScroll();
+
+
+
+
+
+  
+
+  
+  function addToCart(name, price, image, originalPrice, discount, rating) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const product = { id: Date.now(), name, price, image, originalPrice, discount, rating };
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${name} added to cart!`);
+}
+
+</script>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+</head>
+<body>
+    <h1>Thank You for Your Order!</h1>
+    
+    <!-- Order Summary -->
+    <div id="orderSummary"></div>
+
+    <script>
+        // Step 6.2: JavaScript to Display Order Summary
+
+        // Retrieve stored order details
+        const shippingInfo = JSON.parse(localStorage.getItem('shippingInfo'));
+        const paymentMethod = localStorage.getItem('paymentMethod');
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Calculate total cost
+        const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+
+        // Display order summary
+        const orderSummaryDiv = document.getElementById('orderSummary');
+        
+        // Build the summary HTML
+        let summaryHTML = `
+            <h3>Order Summary</h3>
+            <ul>
+                ${cartItems.map(item => `<li>${item.name} - ₹${item.price}</li>`).join('')}
+            </ul>
+            <p><strong>Total Cost:</strong> ₹${total}</p>
+            <h3>Shipping Information</h3>
+            <p><strong>Name:</strong> ${shippingInfo.name}</p>
+            <p><strong>Phone:</strong> ${shippingInfo.phone}</p>
+            <p><strong>Address:</strong> ${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state} - ${shippingInfo.postalCode}</p>
+            <h3>Payment Method</h3>
+            <p>${paymentMethod}</p>
+        `;
+        
+        orderSummaryDiv.innerHTML = summaryHTML;
+
+        // Clear the cart and temporary order data after displaying confirmation
+        localStorage.removeItem('cart');
+        localStorage.removeItem('shippingInfo');
+        localStorage.removeItem('paymentMethod');
+    </script>
+</body>
+</html>

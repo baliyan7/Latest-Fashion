@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Payment Page</h1>
+    
+    <!-- Display Shipping Information -->
+    <div id="shippingInfoDisplay"></div>
+
+    <!-- Payment Options -->
+    <h2>Select Payment Method</h2>
+    <form id="paymentForm">
+        <label>
+            <input type="radio" name="paymentMethod" value="Credit/Debit Card" required>
+            Credit/Debit Card
+        </label><br>
+        <label>
+            <input type="radio" name="paymentMethod" value="UPI" required>
+            UPI
+        </label><br>
+        <label>
+            <input type="radio" name="paymentMethod" value="Cash on Delivery" required>
+            Cash on Delivery
+        </label><br>
+        <button type="button" id="confirmPaymentBtn">Confirm Payment</button>
+    </form>
+
+    <script>
+        // Step 5.2: JavaScript for Displaying and Handling Payment
+
+        // Display shipping info from localStorage
+        const shippingInfo = JSON.parse(localStorage.getItem('shippingInfo'));
+        const shippingInfoDisplay = document.getElementById('shippingInfoDisplay');
+
+        if (shippingInfo) {
+            shippingInfoDisplay.innerHTML = `
+                <h3>Shipping Information</h3>
+                <p><strong>Name:</strong> ${shippingInfo.name}</p>
+                <p><strong>Phone:</strong> ${shippingInfo.phone}</p>
+                <p><strong>Address:</strong> ${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state} - ${shippingInfo.postalCode}</p>
+            `;
+        }
+
+        // Handle payment confirmation
+        document.getElementById('confirmPaymentBtn').addEventListener('click', function() {
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+
+            if (!paymentMethod) {
+                alert("Please select a payment method.");
+                return;
+            }
+
+            // Store payment method in localStorage
+            localStorage.setItem('paymentMethod', paymentMethod.value);
+
+            // Redirect to confirmation page
+            window.location.href = 'confirmation.html';
+        });
+        const stripe = Stripe('YOUR_PUBLIC_KEY'); // Replace with your Stripe public key
+        const elements = stripe.elements();
+        const card = elements.create('card');
+        card.mount('#card-element');
+
+        document.getElementById('confirmPaymentBtn').addEventListener('click', async function() {
+            const { paymentMethod, error } = await stripe.createPaymentMethod({
+                type: 'card',
+                card: card,
+            });
+
+            if (error) {
+                alert(error.message); // Handle error
+            } else {
+                // Send paymentMethod.id to your server for processing the payment
+                alert('Payment successful!'); // Temporary success message
+                window.location.href = 'confirmation.html';
+            }
+        });
+        // Example for storing a new order after payment
+const newOrder = {
+    id: Math.floor(Math.random() * 10000),  // Random order ID
+    date: new Date().toLocaleDateString(),
+    status: 'Processing',
+    items: JSON.parse(localStorage.getItem('cart')),  // Items in cart
+    total: total  // Total cost calculated
+};
+
+// Fetch existing orders and append the new one
+const orders = JSON.parse(localStorage.getItem('orders')) || [];
+orders.push(newOrder);
+localStorage.setItem('orders', JSON.stringify(orders));
+document.getElementById('confirmPaymentBtn').addEventListener('click', async function() {
+    const { paymentMethod, error } = await stripe.createPaymentMethod({
+        type: 'card',
+        card: card,
+    });
+
+    if (error) {
+        alert(error.message); // Handle error
+    } else {
+        // Store order details in localStorage
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+        const newOrder = {
+            id: Math.floor(Math.random() * 10000),  // Random order ID
+            date: new Date().toLocaleDateString(),
+            status: 'Processing',  // Initial order status
+            items: cart,           // Items in the current cart
+            total: total           // Total cost calculated from cart items
+        };
+
+        // Add new order to existing orders in localStorage
+        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        orders.push(newOrder);
+        localStorage.setItem('orders', JSON.stringify(orders));
+
+        // Clear cart after order is placed
+        localStorage.removeItem('cart');
+
+        // Redirect to confirmation page
+        window.location.href = 'confirmation.html';
+    }
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Cart</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #f9f9f9;
+    }
+
+    /* Center logo in header */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background-color: #f5f5f5;
+      /* Optional: Add background color to header */
+    }
+
+    .logo-container h1 {
+      margin-left: 18px;
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .logo-container h2 {
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+      color: orange;
+    }
+
+    /* Logo image styling */
+    .logo-image {
+      margin-left: 55px;
+      height: 50px;
+      border-radius: 30px;
+      width: 1px;
+      /* Adjust width to control logo size on larger screens */
+    }
+
+    /* Responsive styling for smaller screens */
+    @media (max-width: 600px) {
+      .logo-image {
+        width: 50px;
+        /* Adjust width for mobile screens */
+      }
+    }
+
+
+    h1 {
+      text-align: center;
+
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      border-radius: 4px;
+      margin-right: 15px;
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-info h2 {
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .cart-item-info .rating {
+      font-size: 14px;
+      color: #28a745;
+    }
+
+    .cart-item-info .price-section {
+      font-size: 16px;
+      color: #000;
+    }
+
+    .cart-item-info .discount {
+      color: #ff5722;
+      font-size: 14px;
+      margin-left: 5px;
+    }
+
+    .cart-item-info .old-price {
+      text-decoration: line-through;
+      color: #757575;
+      margin-right: 5px;
+    }
+
+    .cart-item-controls {
+      text-align: right;
+    }
+
+    .cart-item button {
+      margin-top: 5px;
+      padding: 5px 10px;
+      border: none;
+      background: #007bff;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #totalPrice {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .place-order-btn {
+      display: block;
+      width: 100%;
+      
+      padding: 10px;
+      font-size: 18px;
+      
+      background: #f39c12;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #ffffff;
+      padding: 10px 0;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+      border-top: 1px solid #ddd;
+      text-decoration: none;
+    }
+
+    /* Navigation Item */
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      text-decoration: none;
+    }
+
+    /* Icon Styling */
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 5px;
+    }
+
+    /* Label Styling */
+    .label {
+      font-size: 15px;
+      color: #555;
+    }
+
+    /* Badge for Message Notifications */
+    .badge {
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    
+  </style>
+</head>
+
+<body>
+  <section class="logo-container">
+    <img src="./all photos/home logo.png" alt="New Age Fashion Logo" class="logo-image">
+    <div>
+      <h1>New Age Fashion</h1>
+      <h2>Latest Outfits</h2>
+    </div>
+  </section>
+  <h1>Your Cart</h1>
+  <div id="cartItems"></div>
+  <div id="totalPrice"></div>
+  <button class="place-order-btn" id="placeOrderBtn">Place Order</button>
+  <!-- Footer Section -->
+
+ 
+  <!-- Bottom Navigation Bar -->
+  <div class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <img src="./all photos/home.png" alt="Home" class="icon">
+      <span class="label">Home</span>
+    </a>
+    <a href="trending.html" class="nav-item">
+      <img src="./all photos/trendingicon.png" alt="Trending" class="icon">
+      <span class="label">Trending</span>
+    </a>
+    <a href="membership.html" class="nav-item">
+      <img src="./all photos/planicon.png" alt="Plan" class="icon">
+      <span class="label">Plan</span>
+    </a>
+    <a href="cart.html" class="nav-item">
+      <img src="./all photos/carticon.png" alt="Cart" class="icon">
+      <span class="label">Cart</span>
+    </a>
+    <a href="account.html" class="nav-item">
+      <img src="./all photos/accounticon.png" alt="Account" class="icon">
+      <span class="label">Account</span>
+    </a>
+  </div>
+  <script>
+    function displayCart() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartItemsDiv = document.getElementById('cartItems');
+      const totalPriceDiv = document.getElementById('totalPrice');
+      const placeOrderBtn = document.getElementById('placeOrderBtn');
+      cartItemsDiv.innerHTML = '';
+
+      if (cart.length === 0) {
+        // Show empty cart message
+        cartItemsDiv.innerHTML = "<h1 style='text-align: center; font-size: 25px; margin-top: 50%; color: black;'>Please add something in your cart before placing an order.</h1>";
+        totalPriceDiv.innerHTML = ''; // Hide total price
+        placeOrderBtn.disabled = true;
+        placeOrderBtn.onclick = function () {
+          alert("Please add items to your cart before placing an order.");
+        };
+      } else {
+        let total = 0;
+        cart.forEach(item => {
+          total += item.price;
+
+          cartItemsDiv.innerHTML += `
+                    <div class="cart-item" id="cart-item-${item.id}">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div>
+                            <h2>${item.name}</h2>
+                            <p>Original Price: ₹${item.originalPrice}</p>
+                            <p>Discount Price: ₹${item.price} (${item.discount}% off)</p>
+                            <p>Rating: ${item.rating}★</p>
+                            <button onclick="removeItem(${item.id})">Remove</button>
+                        </div>
+                    </div>
+                `;
+        });
+
+        totalPriceDiv.innerHTML = `Total Price: ₹${total}`;
+        placeOrderBtn.disabled = false;
+        placeOrderBtn.onclick = function () {
+          window.location.href = 'order-summary.html';
+        };
+      }
+    }
+
+    function removeItem(id) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart = cart.filter(item => item.id !== id);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      displayCart();
+    }
+
+    window.onload = displayCart;
+  </script>
+
+</body>
+
+</html>
