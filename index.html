@@ -1181,6 +1181,18 @@ window.addEventListener('load', function () {
         document.getElementById('preloader').style.display = 'none';
         document.getElementById('content').style.display = 'block';
     });
+    
+    // Hide the main content initially
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("content").style.display = "none";
+    });
+
+    // Show main content and hide loader once the page is fully loaded
+    window.addEventListener("load", function() {
+        document.getElementById("preloader").style.display = "none"; // Hide loader
+        document.getElementById("content").style.display = "block"; // Show main content
+    });
+
 
   // Sample product data
   const products = [
