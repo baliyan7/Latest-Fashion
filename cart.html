@@ -21,8 +21,9 @@
       box-sizing: border-box;
       background-color: #f9f9f9;
     }
- /*loader on the screen */
- :root {
+
+    /*loader on the screen */
+    :root {
       --hue: 223;
       --bg: hsl(var(--hue), 10%, 90%);
       --fg: hsl(var(--hue), 10%, 10%);
@@ -198,11 +199,12 @@
     .content {
       display: none;
     }
+
     /* Center logo in header */
     .logo-container {
       display: flex;
       align-items: center;
-      padding: 10px;
+      padding: 5px;
       background-color: #f5f5f5;
       /* Optional: Add background color to header */
     }
@@ -210,19 +212,19 @@
     .logo-container h1 {
       margin-left: 18px;
       font-weight: bold;
-      font-size: 24px;
+      font-size: 20px;
     }
 
     .logo-container h2 {
       font-weight: bold;
-      font-size: 18px;
+      font-size: 17px;
       text-align: center;
       color: orange;
     }
 
     /* Logo image styling */
     .logo-image {
-      margin-left: 55px;
+      margin-left: 75px;
       height: 50px;
       border-radius: 30px;
       width: 1px;
@@ -316,10 +318,10 @@
     .place-order-btn {
       display: block;
       width: 100%;
-      
+
       padding: 10px;
       font-size: 18px;
-      
+
       background: #f39c12;
       color: #fff;
       border: none;
@@ -387,8 +389,6 @@
       font-size: 10px;
       font-weight: bold;
     }
-
-    
   </style>
 </head>
 
@@ -434,7 +434,7 @@
   <button class="place-order-btn" id="placeOrderBtn">Place Order</button>
   <!-- Footer Section -->
 
- 
+
   <!-- Bottom Navigation Bar -->
   <div class="bottom-nav">
     <a href="index.html" class="nav-item">
@@ -459,22 +459,22 @@
     </a>
   </div>
   <script>
- window.addEventListener('load', function () {
-    // Hide preloader and show content after the page is fully loaded
-    document.getElementById('preloader').style.display = 'none';
-    document.getElementById('content').style.display = 'block';
-  });
+    window.addEventListener('load', function () {
+      // Hide preloader and show content after the page is fully loaded
+      document.getElementById('preloader').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+    });
 
-  // Hide the main content initially
-  document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("content").style.display = "none";
-  });
+    // Hide the main content initially
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("content").style.display = "none";
+    });
 
-  // Show main content and hide loader once the page is fully loaded
-  window.addEventListener("load", function () {
-    document.getElementById("preloader").style.display = "none"; // Hide loader
-    document.getElementById("content").style.display = "block"; // Show main content
-  });
+    // Show main content and hide loader once the page is fully loaded
+    window.addEventListener("load", function () {
+      document.getElementById("preloader").style.display = "none"; // Hide loader
+      document.getElementById("content").style.display = "block"; // Show main content
+    });
 
 
     function displayCart() {

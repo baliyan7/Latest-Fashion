@@ -28,8 +28,9 @@
       box-sizing: border-box;
       background-color: #f9f9f9;
     }
- /*loader on the screen */
- :root {
+
+    /*loader on the screen */
+    :root {
       --hue: 223;
       --bg: hsl(var(--hue), 10%, 90%);
       --fg: hsl(var(--hue), 10%, 10%);
@@ -205,11 +206,12 @@
     .content {
       display: none;
     }
-    /* Center logo in header */
-    .logo-container {
+
+   /* Center logo in header */
+   .logo-container {
       display: flex;
       align-items: center;
-      padding: 10px;
+      padding: 5px;
       background-color: #f5f5f5;
       /* Optional: Add background color to header */
     }
@@ -217,19 +219,19 @@
     .logo-container h1 {
       margin-left: 18px;
       font-weight: bold;
-      font-size: 24px;
+      font-size: 20px;
     }
 
     .logo-container h2 {
       font-weight: bold;
-      font-size: 18px;
+      font-size: 17px;
       text-align: center;
       color: orange;
     }
 
     /* Logo image styling */
     .logo-image {
-      margin-left: 55px;
+      margin-left: 75px;
       height: 50px;
       border-radius: 30px;
       width: 1px;
@@ -384,19 +386,20 @@
       font-size: 10px;
       font-weight: bold;
     }
+
     /* Footer */
     footer {
-            background-color: #333;
-            color: white;
-            padding: 16px;
-            text-align: center;
-            font-size: 0.9rem;
-        }
+      background-color: #333;
+      color: white;
+      padding: 16px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
 
-        footer a {
-            color: #ff7f50;
-            text-decoration: none;
-        }
+    footer a {
+      color: #ff7f50;
+      text-decoration: none;
+    }
   </style>
 </head>
 
@@ -495,7 +498,7 @@
     <a href="membership.html" class="nav-item">
       <img src="./all photos/planicon.png" alt="Plan" class="icon-bottom">
       <span class="label">Plan</span>
-    </a> 
+    </a>
     <a href="cart.html" class="nav-item">
       <img src="./all photos/carticon.png" alt="Cart" class="icon-bottom">
       <span class="label">Cart</span>
@@ -505,15 +508,15 @@
       <span class="label">Account</span>
     </a>
   </div>
-   <!-- Footer Section -->
-   <footer>
+  <!-- Footer Section -->
+  <footer>
     <p>&copy; 2024 Your Brand. All Rights Reserved.</p>
     <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-</footer>
+  </footer>
   <script src="script.js"></script>
 </body>
 <script>
-   window.addEventListener('load', function () {
+  window.addEventListener('load', function () {
     // Hide preloader and show content after the page is fully loaded
     document.getElementById('preloader').style.display = 'none';
     document.getElementById('content').style.display = 'block';
@@ -533,7 +536,7 @@
   // Display greeting if the user is logged in
   document.addEventListener("DOMContentLoaded", function () {
     const userName = localStorage.getItem("userFirstName");
-    
+
     if (userName) {
       // Show greeting message
       document.getElementById("greeting").innerHTML = `<h2>Hey! ${userName}</h2>`;

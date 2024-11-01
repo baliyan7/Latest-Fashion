@@ -22,8 +22,9 @@
       box-sizing: border-box;
       background-color: #f9f9f9;
     }
- /*loader on the screen */
- :root {
+
+    /*loader on the screen */
+    :root {
       --hue: 223;
       --bg: hsl(var(--hue), 10%, 90%);
       --fg: hsl(var(--hue), 10%, 10%);
@@ -199,11 +200,12 @@
     .content {
       display: none;
     }
+
     /* Center logo in header */
     .logo-container {
       display: flex;
       align-items: center;
-      padding: 10px;
+      padding: 5px;
       background-color: #f5f5f5;
       /* Optional: Add background color to header */
     }
@@ -211,19 +213,19 @@
     .logo-container h1 {
       margin-left: 18px;
       font-weight: bold;
-      font-size: 24px;
+      font-size: 20px;
     }
 
     .logo-container h2 {
       font-weight: bold;
-      font-size: 18px;
+      font-size: 17px;
       text-align: center;
       color: orange;
     }
 
     /* Logo image styling */
     .logo-image {
-      margin-left: 55px;
+      margin-left: 75px;
       height: 50px;
       border-radius: 30px;
       width: 1px;
@@ -237,98 +239,101 @@
         /* Adjust width for mobile screens */
       }
     }
+
+   
+
     .container {
-            width: 100%;
-            max-width: 1200px;
-            padding: 20px;
-        }
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px;
+    }
 
-        .container h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: darkgoldenrod;
-        }
+    .container h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: darkgoldenrod;
+    }
 
-        .plan {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 20px;
-            background: #fff;
-            transition: transform 0.3s;
-        }
+    .plan {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      background: #fff;
+      transition: transform 0.3s;
+    }
 
-        .plan:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-        }
+    .plan:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    }
 
-        .plan-title {
-            font-size: 1.5em;
-            color: black;
-            margin-bottom: 10px;
-            text-align: center;
-        }
+    .plan-title {
+      font-size: 1.5em;
+      color: black;
+      margin-bottom: 10px;
+      text-align: center;
+    }
 
-        .price {
-            font-size: 1.2em;
-            color: #28a745;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    .price {
+      font-size: 1.2em;
+      color: #28a745;
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-        .benefits {
-            list-style-type: none;
-            padding: 0;
-            margin-bottom: 20px;
-        }
+    .benefits {
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
 
-        .benefits li {
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-        }
+    .benefits li {
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+    }
 
-        .benefits li::before {
-            content: "✔️";
-            margin-right: 10px;
-            color: #28a745;
-        }
+    .benefits li::before {
+      content: "✔️";
+      margin-right: 10px;
+      color: #28a745;
+    }
 
-        .btn {
-            display: block;
-            width: 100%;
-            text-align: center;
-            padding: 7px;
-            font-size: 19px;
-            font-weight: bold;
-            color: #fff;
-            background-color: #007bff;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
+    .btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 7px;
+      font-size: 19px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #007bff;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
 
-        .btn:hover {
-            background-color: #0056b3;
-        }
+    .btn:hover {
+      background-color: #0056b3;
+    }
 
-        /* Responsive Layout */
-        .plans {
-            display: grid;
-            gap: 20px;
-        }
+    /* Responsive Layout */
+    .plans {
+      display: grid;
+      gap: 20px;
+    }
 
-        @media (min-width: 768px) {
-            .plans {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+    @media (min-width: 768px) {
+      .plans {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
-        @media (min-width: 1024px) {
-            .plans {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
+    @media (min-width: 1024px) {
+      .plans {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
 
     /* Basic Reset */
     * {
@@ -386,6 +391,7 @@
       font-size: 10px;
       font-weight: bold;
     }
+
     /* Footer */
     footer {
       background-color: #333;
@@ -399,7 +405,6 @@
       color: #ff7f50;
       text-decoration: none;
     }
-
   </style>
 </head>
 
@@ -442,51 +447,51 @@
   <div class="container">
     <h1>Exclusive Membership Plans</h1>
     <div class="plans">
-        <!-- Basic Membership Plan -->
-        <div class="plan">
-            <h2 class="plan-title">Basic Membership</h2>
-            <p class="price">Rs.149 / Month</p>
-            <ul class="benefits">
-                <li>10% off all items</li>
-                <li>Early sale access</li>
-                <li>Free standard shipping</li>
-            </ul>
-            <button class="btn join-btn" data-plan="basic">Join Basic</button>
-        </div>
-        <!-- Premium Membership Plan -->
-        <div class="plan">
-            <h2 class="plan-title">Premium Membership</h2>
-            <p class="price">Rs.299 / Month</p>
-            <ul class="benefits">
-                <li>15% off all items</li>
-                <li>Early access to new collections</li>
-                <li>Personalized styling advice</li>
-                <li>Birthday perks</li>
-                <li>Free express shipping</li>
-            </ul>
-            <button class="btn join-btn" data-plan="premium">Join Premium</button>
-        </div>
-        <!-- VIP Membership Plan -->
-        <div class="plan">
-            <h2 class="plan-title">VIP Membership</h2>
-            <p class="price">Rs.499 / Month</p>
-            <ul class="benefits">
-                <li>20% off all items</li>
-                <li>Cash on Delivery unlocked</li>
-                <li>Free delivery unlocked</li>
-                <li>Exclusive access to limited editions</li>
-                <li>Early access to new arrivals</li>
-                <li>Personal stylist access</li>
-                <li>Priority customer support</li>
-                <li>VIP-only events</li>
-                <li>VIP rewards unlocked</li>
-                <li>Extended return period</li>
-            </ul>
-            <button class="btn join-btn" data-plan="vip">Join VIP</button>
-        </div>
+      <!-- Basic Membership Plan -->
+      <div class="plan">
+        <h2 class="plan-title">Basic Membership</h2>
+        <p class="price">Rs.149 / Month</p>
+        <ul class="benefits">
+          <li>10% off all items</li>
+          <li>Early sale access</li>
+          <li>Free standard shipping</li>
+        </ul>
+        <button class="btn join-btn" data-plan="basic">Join Basic</button>
+      </div>
+      <!-- Premium Membership Plan -->
+      <div class="plan">
+        <h2 class="plan-title">Premium Membership</h2>
+        <p class="price">Rs.299 / Month</p>
+        <ul class="benefits">
+          <li>15% off all items</li>
+          <li>Early access to new collections</li>
+          <li>Personalized styling advice</li>
+          <li>Birthday perks</li>
+          <li>Free express shipping</li>
+        </ul>
+        <button class="btn join-btn" data-plan="premium">Join Premium</button>
+      </div>
+      <!-- VIP Membership Plan -->
+      <div class="plan">
+        <h2 class="plan-title">VIP Membership</h2>
+        <p class="price">Rs.499 / Month</p>
+        <ul class="benefits">
+          <li>20% off all items</li>
+          <li>Cash on Delivery unlocked</li>
+          <li>Free delivery unlocked</li>
+          <li>Exclusive access to limited editions</li>
+          <li>Early access to new arrivals</li>
+          <li>Personal stylist access</li>
+          <li>Priority customer support</li>
+          <li>VIP-only events</li>
+          <li>VIP rewards unlocked</li>
+          <li>Extended return period</li>
+        </ul>
+        <button class="btn join-btn" data-plan="vip">Join VIP</button>
+      </div>
 
     </div>
-</div>
+  </div>
   <!-- Bottom Navigation Bar -->
   <div class="bottom-nav">
     <a href="index.html" class="nav-item">
@@ -510,15 +515,15 @@
       <span class="label">Account</span>
     </a>
   </div>
-   <!-- Footer Section -->
-   <footer>
+  <!-- Footer Section -->
+  <footer>
     <p>&copy; 2024 Your Brand. All Rights Reserved.</p>
     <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
   </footer>
   <script src="script.js"></script>
 </body>
 <script>
-   window.addEventListener('load', function () {
+  window.addEventListener('load', function () {
     // Hide preloader and show content after the page is fully loaded
     document.getElementById('preloader').style.display = 'none';
     document.getElementById('content').style.display = 'block';
@@ -535,18 +540,18 @@
     document.getElementById("content").style.display = "block"; // Show main content
   });
 
- document.addEventListener("DOMContentLoaded", () => {
-        const joinButtons = document.querySelectorAll(".join-btn");
-    
-        joinButtons.forEach(button => {
-            button.addEventListener("click", (event) => {
-                const selectedPlan = event.target.getAttribute("data-plan");
-    
-                // Redirect to the membership registration page with the selected plan
-                window.location.href = `register.html?plan=${selectedPlan}`;
-            });
-        });
+  document.addEventListener("DOMContentLoaded", () => {
+    const joinButtons = document.querySelectorAll(".join-btn");
+
+    joinButtons.forEach(button => {
+      button.addEventListener("click", (event) => {
+        const selectedPlan = event.target.getAttribute("data-plan");
+
+        // Redirect to the membership registration page with the selected plan
+        window.location.href = `register.html?plan=${selectedPlan}`;
+      });
     });
+  });
 </script>
 
 </html>

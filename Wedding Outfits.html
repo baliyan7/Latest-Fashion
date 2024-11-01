@@ -22,8 +22,9 @@
       box-sizing: border-box;
       background-color: #f9f9f9;
     }
- /*loader on the screen */
- :root {
+
+    /*loader on the screen */
+    :root {
       --hue: 223;
       --bg: hsl(var(--hue), 10%, 90%);
       --fg: hsl(var(--hue), 10%, 10%);
@@ -199,11 +200,12 @@
     .content {
       display: none;
     }
+
     /* Center logo in header */
     .logo-container {
       display: flex;
       align-items: center;
-      padding: 10px;
+      padding: 5px;
       background-color: #f5f5f5;
       /* Optional: Add background color to header */
     }
@@ -211,19 +213,19 @@
     .logo-container h1 {
       margin-left: 18px;
       font-weight: bold;
-      font-size: 24px;
+      font-size: 20px;
     }
 
     .logo-container h2 {
       font-weight: bold;
-      font-size: 18px;
+      font-size: 17px;
       text-align: center;
       color: orange;
     }
 
     /* Logo image styling */
     .logo-image {
-      margin-left: 55px;
+      margin-left: 75px;
       height: 50px;
       border-radius: 30px;
       width: 1px;
@@ -237,6 +239,7 @@
         /* Adjust width for mobile screens */
       }
     }
+
 
     /* Header */
     header {
@@ -256,8 +259,8 @@
       margin: 0 10px;
     }
 
-        /* Styles for the Back Button */
-        .back-button {
+    /* Styles for the Back Button */
+    .back-button {
       position: absolute;
 
       display: flex;
@@ -298,7 +301,7 @@
 
     .search-icon-img {
       width: 30px;
-    height: 30px;
+      height: 30px;
       margin-left: 10px;
     }
 
@@ -361,7 +364,7 @@
       padding: 10px 5px;
       background-color: #e0f7fa;
       margin-bottom: 10px;
-      
+
     }
 
     .shop-now-btn {
@@ -478,14 +481,14 @@
 
     .new-cards-section h2 {
       font-size: 1.5rem;
-    margin-top: 10px;
-    padding: 10px;
-    font-weight: bold;
-    background: #e0f7fa;
-    text-align: center;
-    margin-bottom: 10px;
-}
-    
+      margin-top: 10px;
+      padding: 10px;
+      font-weight: bold;
+      background: #e0f7fa;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
     .card-swiper {
       display: grid;
       grid-template-columns: repeat(2, 0.495fr);
@@ -559,19 +562,19 @@
 
     .favorite-icon {
       position: relative;
-    left: 124px;
-    bottom: 260px;
-    width: 50px;
-    text-align: center;
-    border-radius: 15px;
-    background: #26B690;
-    margin: -12px;
-    padding: 2px;
-    border: none;
-    font-weight: bold;
-    font-size: 14px;
-    color: white;
-    
+      left: 124px;
+      bottom: 260px;
+      width: 50px;
+      text-align: center;
+      border-radius: 15px;
+      background: #26B690;
+      margin: -12px;
+      padding: 2px;
+      border: none;
+      font-weight: bold;
+      font-size: 14px;
+      color: white;
+
     }
 
 
@@ -680,17 +683,16 @@
   </section>
   <header>
     <div class="navbar">
-<!-- Back Button with Image Icon -->
-<a class="back-button" onclick="goBack()" aria-label="Go Back">
-  <img src="./all photos/back-icon.png" alt="Back Icon" class="back-icon">
-</a>
+      <!-- Back Button with Image Icon -->
+      <a class="back-button" onclick="goBack()" aria-label="Go Back">
+        <img src="./all photos/back-icon.png" alt="Back Icon" class="back-icon">
+      </a>
 
 
       <div class="search-container">
         <input type="text" id="search-input" placeholder="Search here..." class="search-bar">
         <button class="search-button" onclick="performSearch()">
-          <img src="./all photos/search.png"
-            alt="Search Icon" class="search-icon-img">
+          <img src="./all photos/search.png" alt="Search Icon" class="search-icon-img">
         </button>
       </div>
     </div>
@@ -705,7 +707,7 @@
     <h2>Latest Wedding Fashion</h2>
   </section>
   <div class="new-cards-section">
-   
+
     <div class="card-swiper">
       <a href="#" class="card">
         <img src="./all photos/t shirt image product 1.jpg" alt="Product Image">
@@ -955,7 +957,7 @@
 </body>
 <script>
 
-window.addEventListener('load', function () {
+  window.addEventListener('load', function () {
     // Hide preloader and show content after the page is fully loaded
     document.getElementById('preloader').style.display = 'none';
     document.getElementById('content').style.display = 'block';
@@ -972,8 +974,8 @@ window.addEventListener('load', function () {
     document.getElementById("content").style.display = "block"; // Show main content
   });
 
-// JavaScript function to go back to the previous page
-function goBack() {
+  // JavaScript function to go back to the previous page
+  function goBack() {
     window.history.back();
   }
 
@@ -1065,16 +1067,16 @@ function goBack() {
 
 
 
-  
 
-  
+
+
   function addToCart(name, price, image, originalPrice, discount, rating) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const product = { id: Date.now(), name, price, image, originalPrice, discount, rating };
     cart.push(product);
     localStorage.setItem('cart', JSON.stringify(cart));
     alert(`${name} added to cart!`);
-}
+  }
 
 </script>
 
