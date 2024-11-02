@@ -15,6 +15,14 @@
       font-family: Arial, sans-serif;
     }
 
+    /* Remove underline from links in product cards */
+    .card-link {
+      text-decoration: none;
+      /* Removes the underline */
+      color: inherit;
+      /* Inherits the color from the parent, keeping the design consistent */
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -985,12 +993,35 @@
 
   // Sample product data
   const products = [
-    { name: 'Blue T-Shirt', category: 'Apparel', price: '₹1,200', discount: '55% off', rating: '★ 4.5 (10,000)', image: 'https://via.placeholder.com/200' },
+    { name: 'T-Shirt', category: 'Apparel', price: '₹499', discount: '50% off', rating: '★ 4.5 (10,000)', href: 'profile.html', image: './t-shirt-images/New Age Image 4.jpeg' },
     { name: 'Red Hoodie', category: 'Apparel', price: '₹1,800', discount: '45% off', rating: '★ 4.3 (7,000)', image: 'https://via.placeholder.com/200' },
+    { name: 'T-Shirt', category: 'Apparel', price: '₹499', discount: '50% off', rating: '★ 4.5 (10,000)', href: 'profile.html', image: './t-shirt-images/New Age Image 1.jpeg' },
+    { name: 'T-Shirt', category: 'Apparel', price: '₹499', discount: '50% off', rating: '★ 4.5 (10,000)', href: 'profile.html', image: './t-shirt-images/New Age Image 2.jpeg' },
+    { name: 'T-Shirt', category: 'Apparel', price: '₹499', discount: '50% off', rating: '★ 4.5 (10,000)', href: 'profile.html', image: './t-shirt-images/New Age Image 3.jpeg' },
+    { name: 'T-Shirt', category: 'Apparel', price: '₹499', discount: '50% off', rating: '★ 4.5 (10,000)', href: 'profile.html', image: './t-shirt-images/New Age Image 5.jpeg' },
+    { name: 'T-Shirt', category: 'Apparel', price: '₹499', discount: '50% off', rating: '★ 4.5 (10,000)', href: 'profile.html', image: './t-shirt-images/New Age Image 6.jpeg' },
+    { name: 'T-Shirt', category: 'Apparel', price: '₹499', discount: '50% off', rating: '★ 4.5 (10,000)', href: 'profile.html', image: './t-shirt-images/New Age Image 7.jpeg' },
+    { name: 'T-Shirt', category: 'Apparel', price: '₹499', discount: '50% off', rating: '★ 4.5 (10,000)', href: 'profile.html', image: './t-shirt-images/New Age Image 8.jpeg' },
+    { name: 'T-Shirt', category: 'Apparel', price: '₹499', discount: '50% off', rating: '★ 4.5 (10,000)', href: 'profile.html', image: './t-shirt-images/New Age Image 9.jpeg' },
+    { name: 'T-Shirt', category: 'Apparel', price: '₹499', discount: '50% off', rating: '★ 4.5 (10,000)', href: 'profile.html', image: './t-shirt-images/New Age Image 10.jpeg' },
+    { name: 'T-Shirt', category: 'Apparel', price: '₹499', discount: '50% off', rating: '★ 4.5 (10,000)', href: 'profile.html', image: './t-shirt-images/New Age Image 11.jpeg' },
+    { name: 'T-Shirt', category: 'Apparel', price: '₹499', discount: '50% off', rating: '★ 4.5 (10,000)', href: 'profile.html', image: './t-shirt-images/New Age Image 12.jpeg' },
+    { name: 'T-Shirt', category: 'Apparel', price: '₹499', discount: '50% off', rating: '★ 4.5 (10,000)', href: 'profile.html', image: './t-shirt-images/New Age Image 13.jpeg' },
+    { name: 'T-Shirt', category: 'Apparel', price: '₹499', discount: '50% off', rating: '★ 4.5 (10,000)', href: 'profile.html', image: './t-shirt-images/New Age Image 14.jpeg' },
     { name: 'Leather Jacket', category: 'Outerwear', price: '₹4,500', discount: '30% off', rating: '★ 4.7 (12,000)', image: 'https://via.placeholder.com/200' },
     { name: 'Slim Fit Jeans', category: 'Pants', price: '₹1,500', discount: '40% off', rating: '★ 4.1 (8,000)', image: 'https://via.placeholder.com/200' },
     { name: 'Gray Hoodie', category: 'Apparel', price: '₹1,600', discount: '50% off', rating: '★ 4.0 (9,500)', image: 'https://via.placeholder.com/200' }
   ];
+
+
+  // Add event listener to detect Enter key
+  document.getElementById('search-input').addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+      performSearch();
+    }
+  });
+
+
 
   // Function to perform search
   function performSearch() {
@@ -1002,22 +1033,44 @@
       // Filter products based on the search query
       const results = products.filter(product =>
         product.name.toLowerCase().includes(query)
+
       );
+
 
       // Display results
       if (results.length > 0) {
         results.forEach(product => {
+          // Create a card container
           const card = document.createElement('div');
           card.className = 'card';
-          card.innerHTML = `
+
+          // Use a link if href exists
+          if (product.href) {
+            card.innerHTML = `
+            <a href="${product.href}" target="_blank" class="card-link">
+              <img src="${product.image}" alt="Product Image">
+              <div class="product-info">
+                <p class="brand-name">${product.name}</p>
+                <p class="discount">${product.discount}</p>
+                <p class="price"><span class="original-price">₹${parseInt(product.price.replace('₹', '')) * 2}</span> ${product.price}</p>
+                <p class="rating">${product.rating}</p>
+              </div>
+            </a>
+          `;
+          } else {
+            // If no href, render the card without the link
+            card.innerHTML = `
             <img src="${product.image}" alt="Product Image">
             <div class="product-info">
               <p class="brand-name">${product.name}</p>
               <p class="discount">${product.discount}</p>
-              <p class="price"><span class="original-price">${parseInt(product.price.replace('₹', '')) * 2}</span> ${product.price}</p>
+              <p class="price"><span class="original-price">₹${parseInt(product.price.replace('₹', '')) * 2}</span> ${product.price}</p>
               <p class="rating">${product.rating}</p>
             </div>
           `;
+          }
+
+          // Append card to results container
           resultsContainer.appendChild(card);
         });
       } else {
@@ -1027,6 +1080,7 @@
       resultsContainer.innerHTML = '<p>Please enter a search term.</p>';
     }
   }
+
 
   // JavaScript for auto and touch scrolling
   const scrollContainer = document.getElementById("scrollSection");
