@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W-1 T-shirt</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Swiper CSS for image carousel/swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
+        /*loader on the screen */
+        :root {
+            --hue: 223;
+            --bg: hsl(var(--hue), 10%, 90%);
+            --fg: hsl(var(--hue), 10%, 10%);
+            --primary: hsl(var(--hue), 90%, 55%);
+            --trans-dur: 0.3s;
+            font-size: calc(16px + (20 - 16) * (100vw - 320px) / (1280 - 320));
+        }
+
+        /* Centering the preloader on the screen */
+        .preloader {
+            position: fixed;
+            top: 50%;
+            background-color: white;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            padding: 100%;
+            /* Ensures the loader is above other elements */
+            text-align: center;
+        }
+
+        .preloader__text {
+            position: relative;
+            height: 1.5em;
+        }
+
+        .preloader__msg {
+            animation: msg 0.3s 13.7s linear forwards;
+            position: absolute;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .preloader__msg--last {
+            animation-direction: reverse;
+            animation-delay: 14s;
+            visibility: hidden;
+            font-weight: bold;
+        }
+
+        .cart {
+            display: block;
+            margin: 0 auto 1.5em auto;
+            width: 4em;
+            height: 4em;
+        }
+
+        .cart__lines,
+        .cart__top,
+        .cart__wheel1,
+        .cart__wheel2,
+        .cart__wheel-stroke {
+            animation: cartLines 2s ease-in-out infinite;
+        }
+
+        .cart__lines {
+            stroke: var(--primary);
+        }
+
+        .cart__top {
+            animation-name: cartTop;
+        }
+
+        .cart__wheel1 {
+            animation-name: cartWheel1;
+            transform: rotate(-0.25turn);
+            transform-origin: 43px 111px;
+        }
+
+        .cart__wheel2 {
+            animation-name: cartWheel2;
+            transform: rotate(0.25turn);
+            transform-origin: 102px 111px;
+        }
+
+        .cart__wheel-stroke {
+            animation-name: cartWheelStroke;
+        }
+
+        .cart__track {
+            stroke: hsla(var(--hue), 10%, 10%, 0.1);
+            transition: stroke var(--trans-dur);
+        }
+
+        /* Dark theme */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: hsl(var(--hue), 10%, 10%);
+                --fg: hsl(var(--hue), 10%, 90%);
+            }
+
+            .cart__track {
+                stroke: hsla(var(--hue), 10%, 90%, 0.1);
+            }
+        }
+
+        /* Animations */
+        @keyframes msg {
+            from {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            99.9% {
+                opacity: 0;
+                visibility: visible;
+            }
+
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        @keyframes cartLines {
+
+            from,
+            to {
+                opacity: 0;
+            }
+
+            8%,
+            92% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes cartTop {
+            from {
+                stroke-dashoffset: -338;
+            }
+
+            50% {
+                stroke-dashoffset: 0;
+            }
+
+            to {
+                stroke-dashoffset: 338;
+            }
+        }
+
+        @keyframes cartWheel1 {
+            from {
+                transform: rotate(-0.25turn);
+            }
+
+            to {
+                transform: rotate(2.75turn);
+            }
+        }
+
+        @keyframes cartWheel2 {
+            from {
+                transform: rotate(0.25turn);
+            }
+
+            to {
+                transform: rotate(3.25turn);
+            }
+        }
+
+        @keyframes cartWheelStroke {
+
+            from,
+            to {
+                stroke-dashoffset: 81.68;
+            }
+
+            50% {
+                stroke-dashoffset: 40.84;
+            }
+        }
+
+        /* Hide page content initially */
+        .content {
+            display: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Swiper Container (Image Carousel) */
+        .swiper-container {
+            width: 100%;
+            height: auto;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Product Details */
+        .product-details {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .product-details h2 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            text-align: left;
+            color: #333;
+        }
+
+        .product-details h4 {
+
+            margin-bottom: 8px;
+            text-align: left;
+
+        }
+
+        .product-details p {
+            font-size: 1rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .product-details-rating {
+            font-size: 0.95rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* Price Section */
+        .price-section {
+            padding: 15px 20px;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .discount {
+            color: #e74c3c;
+            font-weight: normal;
+            margin-left: 8px;
+            font-size: 1.2rem;
+        }
+
+        /* Price Section */
+        .return-policy {
+            padding: 15px 20px;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .return-policy-bold {
+            color: #007bff;
+            margin-left: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        /* Delivery Info */
+        .delivery-info {
+            padding: 15px 20px;
+            font-size: 1rem;
+            color: #555;
+            background-color: #fff;
+        }
+
+        /* Delivery Info */
+        .delivery-info p {
+            margin-bottom: 8px;
+        }
+
+        /* Add to Cart Button */
+        .add-to-cart-btn {
+            display: block;
+            width: calc(100% - 40px);
+            margin: 20px auto;
+            padding: 12px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Styles */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 700px;
+            }
+
+            .price-section {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Center logo in header */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            background-color: #f5f5f5;
+            /* Optional: Add background color to header */
+        }
+
+        .logo-container h1 {
+            margin-left: 18px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .logo-container h2 {
+            font-weight: bold;
+            font-size: 17px;
+            text-align: center;
+            color: orange;
+        }
+
+        /* Logo image styling */
+        .logo-image {
+            margin-left: 75px;
+            height: 50px;
+            border-radius: 30px;
+            width: 1px;
+            /* Adjust width to control logo size on larger screens */
+        }
+
+        /* Responsive styling for smaller screens */
+        @media (max-width: 600px) {
+            .logo-image {
+                width: 50px;
+                /* Adjust width for mobile screens */
+            }
+        }
+
+        /* Styles for the Back Button */
+        .back-button {
+            position: absolute;
+            top: 90px;
+            left: 15px;
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            border-radius: 50%;
+            z-index: 9999;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+        }
+
+
+        .back-icon {
+            width: 25px;
+            /* Adjust width and height as needed */
+            height: 25px;
+        }
+
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 10px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            border-top: 1px solid #ddd;
+            text-decoration: none;
+        }
+
+        /* Navigation Item */
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            text-decoration: none;
+        }
+
+        /* Icon Styling */
+        .icon-bottom {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 5px;
+        }
+
+        /* Label Styling */
+        .label {
+            font-size: 15px;
+            color: #555;
+        }
+
+        /* Badge for Message Notifications */
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #ff7f50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="preloader" id="preloader">
+        <svg class="cart" role="img" aria-label="Shopping cart line animation" viewBox="0 0 128 128" width="128px"
+            height="128px" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="8">
+                <g class="cart__track" stroke="hsla(0,10%,10%,0.1)">
+                    <polyline points="4,4 21,4 26,22 124,22 112,64 35,64 39,80 106,80" />
+                    <circle cx="43" cy="111" r="13" />
+                    <circle cx="102" cy="111" r="13" />
+                </g>
+                <g class="cart__lines" stroke="currentColor">
+                    <polyline class="cart__top" points="4,4 21,4 26,22 124,22 112,64 35,64 39,80 106,80"
+                        stroke-dasharray="338 338" stroke-dashoffset="-338" />
+                    <g class="cart__wheel1" transform="rotate(-90,43,111)">
+                        <circle class="cart__wheel-stroke" cx="43" cy="111" r="13" stroke-dasharray="81.68 81.68"
+                            stroke-dashoffset="81.68" />
+                    </g>
+                    <g class="cart__wheel2" transform="rotate(90,102,111)">
+                        <circle class="cart__wheel-stroke" cx="102" cy="111" r="13" stroke-dasharray="81.68 81.68"
+                            stroke-dashoffset="81.68" />
+                    </g>
+                </g>
+            </g>
+        </svg>
+        <div class="preloader__text">
+            <p class="preloader__msg">Please wait…</p>
+            <p class="preloader__msg preloader__msg--last">This is taking long. Something’s wrong.</p>
+        </div>
+    </div>
+    <section class="logo-container">
+        <img src="./all photos/home logo.png" alt="New Age Fashion Logo" class="logo-image">
+        <div>
+            <h1>New Age Fashion</h1>
+            <h2>Latest Outfits</h2>
+        </div>
+    </section>
+    <!-- Back Button with Image Icon -->
+    <a class="back-button" onclick="goBack()" aria-label="Go Back">
+        <img src="./all photos/back-icon.png" alt="Back Icon" class="back-icon">
+    </a>
+    <div class="container">
+        <!-- Product Image Swiper (Carousel) -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="./t-shirt-images/New Age Image 1.jpeg" alt="W-1 T-shirt 1">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./t-shirt-images/New Age Image 2.jpeg" alt="W-1 T-shirt 2">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./t-shirt-images/New Age Image 3.jpeg" alt="W-1 T-shirt 3">
+                </div>
+            </div>
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+            <style>
+                .swiper-pagination {
+                    position: relative;
+                }
+            </style>
+        </div>
+
+        <!-- Product Details Section -->
+        <section class="product-details">
+            <p><strong>120</strong> people purchased this item in the last 30 days.</p>
+            <h2>Regular T-Shirt in Green Color <h4>Men's t-shirt | New Age Fashion | Work Hard T-Shirt</h4>
+            </h2>
+            <h4>Original Price: Rs. 1599/-</h4>
+            <h4>Rating: 4.3 (100+ Reviews)</h4>
+        </section>
+
+        <!-- Price Section -->
+        <section class="price-section">
+            <span>Price: Rs. 399/-</span> <span class="discount">75% Off</span>
+        </section>
+
+        <!-- Delivery Information -->
+        <section class="delivery-info">
+            <p>Product will be Delivered with in <strong>15 days.</strong></p>
+            <p>Cash on Delivery Available in <strong>Membership Plan.</strong></p>
+        </section>
+        <section class="return-policy">
+            <span>Don't worry we have a</span> <span class="return-policy-bold">10 Days Return Policy.</span>
+        </section>
+
+        <!-- Add to Cart Button -->
+        <button href="javascript:void(0);" class="add-to-cart-btn"
+            onclick="addToCart('Regular  T-Shirt in Green Color', 399, './t-shirt-images/New Age Image 1.jpeg', 1599, 75, 4.3)">
+            Add to Cart
+        </button>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <img src="./all photos/home.png" alt="Home" class="icon-bottom">
+            <span class="label">Home</span>
+        </a>
+        <a href="trending.html" class="nav-item">
+            <img src="./all photos/trendingicon.png" alt="Trending" class="icon-bottom">
+            <span class="label">Trending</span>
+        </a>
+        <a href="membership.html" class="nav-item">
+            <img src="./all photos/planicon.png" alt="Plan" class="icon-bottom">
+            <span class="label">Plan</span>
+        </a>
+        <a href="cart.html" class="nav-item">
+            <img src="./all photos/carticon.png" alt="Cart" class="icon-bottom">
+            <span class="label">Cart</span>
+        </a>
+        <a href="account.html" class="nav-item">
+            <img src="./all photos/accounticon.png" alt="Account" class="icon-bottom">
+            <span class="label">Account</span>
+        </a>
+    </div>
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Your Brand. All Rights Reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+    <script>
+        // Initialize Swiper for image carousel
+        var swiper = new Swiper('.swiper-container', {
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        });
+
+        function addToCart(name, price, image, originalPrice, discount, rating) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const product = { id: Date.now(), name, price, image, originalPrice, discount, rating };
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${name} added to cart!`);
+        }
+        // JavaScript function to go back to the previous page
+        function goBack() {
+            window.history.back();
+        }
+
+
+        //loader
+        window.addEventListener('load', function () {
+            // Hide preloader and show content after the page is fully loaded
+            document.getElementById('preloader').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        });
+
+        // Hide the main content initially
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("content").style.display = "none";
+        });
+
+        // Show main content and hide loader once the page is fully loaded
+        window.addEventListener("load", function () {
+            document.getElementById("preloader").style.display = "none"; // Hide loader
+            document.getElementById("content").style.display = "block"; // Show main content
+        });
+    </script>
+</body>
+
+</html>
