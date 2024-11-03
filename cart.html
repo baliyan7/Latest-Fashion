@@ -244,7 +244,7 @@
 
     h1 {
       text-align: center;
-
+      font-size: 28px;
     }
 
     .cart-item {
@@ -257,11 +257,13 @@
       margin-bottom: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
     .cart-item h2 {
       font-weight: bold;
       font-size: 18px;
       color: black;
     }
+
     .cart-item img {
       width: 80px;
       height: 80px;
@@ -324,9 +326,9 @@
     .place-order-btn {
       display: block;
       width: 100%;
-
+      font-weight: bold;
       padding: 10px;
-      font-size: 18px;
+      font-size: 20px;
 
       background: #f39c12;
       color: #fff;
@@ -395,19 +397,20 @@
       font-size: 10px;
       font-weight: bold;
     }
-     /* Footer */
-     footer {
-            background-color: #333;
-            color: white;
-            padding: 16px;
-            text-align: center;
-            font-size: 0.9rem;
-        }
 
-        footer a {
-            color: #ff7f50;
-            text-decoration: none;
-        }
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 16px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #ff7f50;
+      text-decoration: none;
+    }
   </style>
 </head>
 
@@ -481,50 +484,50 @@
   <footer>
     <p>&copy; 2024 Your Brand. All Rights Reserved.</p>
     <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-</footer>
+  </footer>
 </body>
 
 <script src="script.js"></script>
-  <script>
-    window.addEventListener('load', function () {
-      // Hide preloader and show content after the page is fully loaded
-      document.getElementById('preloader').style.display = 'none';
-      document.getElementById('content').style.display = 'block';
-    });
+<script>
+  window.addEventListener('load', function () {
+    // Hide preloader and show content after the page is fully loaded
+    document.getElementById('preloader').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+  });
 
-    // Hide the main content initially
-    document.addEventListener("DOMContentLoaded", function () {
-      document.getElementById("content").style.display = "none";
-    });
+  // Hide the main content initially
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("content").style.display = "none";
+  });
 
-    // Show main content and hide loader once the page is fully loaded
-    window.addEventListener("load", function () {
-      document.getElementById("preloader").style.display = "none"; // Hide loader
-      document.getElementById("content").style.display = "block"; // Show main content
-    });
+  // Show main content and hide loader once the page is fully loaded
+  window.addEventListener("load", function () {
+    document.getElementById("preloader").style.display = "none"; // Hide loader
+    document.getElementById("content").style.display = "block"; // Show main content
+  });
 
 
-    function displayCart() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const cartItemsDiv = document.getElementById('cartItems');
-      const totalPriceDiv = document.getElementById('totalPrice');
-      const placeOrderBtn = document.getElementById('placeOrderBtn');
-      cartItemsDiv.innerHTML = '';
+  function displayCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartItemsDiv = document.getElementById('cartItems');
+    const totalPriceDiv = document.getElementById('totalPrice');
+    const placeOrderBtn = document.getElementById('placeOrderBtn');
+    cartItemsDiv.innerHTML = '';
 
-      if (cart.length === 0) {
-        // Show empty cart message
-        cartItemsDiv.innerHTML = "<h1 style='text-align: center; font-size: 25px; margin-top: 50%; color: black;'>Please add something in your cart before placing an order.</h1>";
-        totalPriceDiv.innerHTML = ''; // Hide total price
-        placeOrderBtn.disabled = true;
-        placeOrderBtn.onclick = function () {
-          alert("Please add items to your cart before placing an order.");
-        };
-      } else {
-        let total = 0;
-        cart.forEach(item => {
-          total += item.price;
+    if (cart.length === 0) {
+      // Show empty cart message
+      cartItemsDiv.innerHTML = "<h1 style='text-align: center; font-size: 25px; margin-top: 50%; color: black;'>Please add something in your cart before placing an order.</h1>";
+      totalPriceDiv.innerHTML = ''; // Hide total price
+      placeOrderBtn.disabled = true;
+      placeOrderBtn.onclick = function () {
+        alert("Please add items to your cart before placing an order.");
+      };
+    } else {
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price;
 
-          cartItemsDiv.innerHTML += `
+        cartItemsDiv.innerHTML += `
                     <div class="cart-item" id="cart-item-${item.id}">
                         <img src="${item.image}" alt="${item.name}">
                         <div>
@@ -536,23 +539,24 @@
                         </div>
                     </div>
                 `;
-        });
+      });
 
-        totalPriceDiv.innerHTML = `Total Price: ₹${total}`;
-        placeOrderBtn.disabled = false;
-        placeOrderBtn.onclick = function () {
-          window.location.href = 'order-summary.html';
-        };
-      }
+      totalPriceDiv.innerHTML = `Total Price: ₹${total}`;
+      placeOrderBtn.disabled = false;
+      placeOrderBtn.onclick = function () {
+        window.location.href = 'order-summary.html';
+      };
     }
+  }
 
-    function removeItem(id) {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart = cart.filter(item => item.id !== id);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      displayCart();
-    }
+  function removeItem(id) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.filter(item => item.id !== id);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    displayCart();
+  }
 
-    window.onload = displayCart;
-  </script>
+  window.onload = displayCart;
+</script>
+
 </html>
